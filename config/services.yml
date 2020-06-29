@@ -1,0 +1,4 @@
+services:
+    phpbbstudio.prism.listener:
+        class: phpbbstudio\prism\event\main
+        tags: [{name: event.listener}]
