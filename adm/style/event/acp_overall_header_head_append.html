@@ -1,12 +1,9 @@
-{# Include - CSS #}
 {% if not definition.INCLUDEDPRISMCSS %}
-	{% INCLUDECSS '@phpbbstudio_prism/prism/' ~ THEME_CSS %}
-	{% INCLUDECSS '@phpbbstudio_prism/common.css' %}
+	{% INCLUDECSS THEME_CSS %}
 	{% DEFINE INCLUDEDPRISMCSS = true %}
 {% endif %}
 
-{# Include JS #}
 {% if not definition.INCLUDEDPRISMMINJS %}
 	{% INCLUDEJS '@phpbbstudio_prism/js/prism.min.js' %}
 	{% DEFINE INCLUDEDPRISMMINJS = true %}
-{% endif %}
+{% endif %}	

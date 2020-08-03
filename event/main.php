@@ -14,9 +14,39 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class main implements EventSubscriberInterface
 {
-	public static function getSubscribedEvents()
+	/** @var \phpbb\config\config */
+	protected $config;
+
+	/** @var \phpbb\template\template */
+	protected $template;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param \phpbb\config\config		$config			Config object
+	 * @param \phpbb\template\template	$template		Template object
+	 */
+	public function __construct(
+		\phpbb\config\config $config,
+		\phpbb\template\template $template
+	)
 	{
-		return ['core.text_formatter_s9e_configure_after' => 'onConfigure'];
+		$this->config	= $config;
+		$this->template	= $template;
+	}
+
+	/**
+	 * Assign functions defined in this class to event listeners in the core.
+	 *
+	 * @return array
+	 * @static
+	 */
+	public static function getSubscribedEvents(): array
+	{
+		return [
+			'core.text_formatter_s9e_configure_after'	=> 'onConfigure',
+			'core.page_header_after'					=> 'assignCss',
+		];
 	}
 
 	/**
@@ -55,5 +85,17 @@ class main implements EventSubscriberInterface
 		}
 
 		$dom->saveChanges();
+	}
+
+	/**
+	 * Assign user's defined theme to Prism
+	 *
+	 * @event  core.page_header_after
+	 * @param \phpbb\event\data		$event		The event object
+	 * @return void
+	 */
+	public function assignCss(\phpbb\event\data $event): void
+	{
+		$this->template->assign_var('THEME_CSS', $this->config['phpbbstudio_prism_theme']);
 	}
 }

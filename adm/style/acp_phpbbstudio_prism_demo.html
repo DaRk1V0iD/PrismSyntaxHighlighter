@@ -1,0 +1,30 @@
+{# Below the code demo block, do not touch! #}
+
+<div class="codebox">
+<div class="code-toolbar">
+<pre class=" language-php">
+<code class=" language-php">
+	<span class="token doc-comment comment">/**
+	 * Voting SQL management
+	 *
+	 * <span class="token keyword">@param</span> <span class="token class-name"><span class="token keyword">int</span></span>    <span class="token parameter">$video_id</span>    The video identifier
+	 * <span class="token keyword">@param</span> <span class="token class-name"><span class="token keyword">string</span></span> <span class="token parameter">$action</span>      The action (like|dislike)
+	 * <span class="token keyword">@return</span> <span class="token class-name"><span class="token keyword">void</span></span>
+	 */</span>
+	<span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function">toggle_votes</span><span class="token punctuation">(</span>int <span class="token variable">$video_id</span><span class="token punctuation">,</span> string <span class="token variable">$action</span><span class="token punctuation">)</span><span class="token punctuation">:</span> void
+	<span class="token punctuation">{</span>
+		<span class="token comment">/* Begin transaction */</span>
+		<span class="token this">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">db</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">sql_transaction</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'begin'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+		<span class="token comment">/* Select current user like/dislike */</span>
+		<span class="token variable">$sql</span> <span class="token operator">=</span> <span class="token single-quoted-string string">'SELECT vote_up FROM '</span> <span class="token punctuation">.</span> <span class="token this">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">lik_table</span> <span class="token punctuation">.</span> <span class="token single-quoted-string string">'
+				WHERE video_id = '</span> <span class="token punctuation">.</span> <span class="token punctuation">(</span>int<span class="token punctuation">)</span> <span class="token variable">$video_id</span>  <span class="token punctuation">.</span> <span class="token single-quoted-string string">'
+					AND user_id = '</span> <span class="token punctuation">.</span> <span class="token punctuation">(</span>int<span class="token punctuation">)</span>  <span class="token this">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">user</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">data</span><span class="token punctuation">[</span><span class="token single-quoted-string string">'user_id'</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">// $user_id;</span>
+		<span class="token variable">$result</span> <span class="token operator">=</span> <span class="token this">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">db</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">sql_query_limit</span><span class="token punctuation">(</span><span class="token variable">$sql</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token variable">$like</span> <span class="token operator">=</span> <span class="token this">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">db</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">sql_fetchrow</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token this">$this</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token property">db</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">sql_freeresult</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code>
+</pre>
+<div class="toolbar"><div class="toolbar-item"><span>PHP</span></div></div>
+</div>
+</div>

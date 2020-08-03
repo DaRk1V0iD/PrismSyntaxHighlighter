@@ -1,0 +1,9 @@
+.codebox {
+	background-color: transparent;
+	border-color: transparent;
+}
+
+.codebox p {
+	border-bottom-color: transparent;
+	display: none;
+}

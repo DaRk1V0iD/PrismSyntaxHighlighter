@@ -1,4 +1,18 @@
 services:
     phpbbstudio.prism.listener:
         class: phpbbstudio\prism\event\main
+        arguments:
+            - '@config'
+            - '@template'
         tags: [{name: event.listener}]
+
+    phpbbstudio.prism.controller.acp:
+        class: phpbbstudio\prism\controller\acp_controller
+        arguments:
+            - '@config'
+            - '@language'
+            - '@log'
+            - '@request'
+            - '@template'
+            - '@ext.manager'
+            - '@user'

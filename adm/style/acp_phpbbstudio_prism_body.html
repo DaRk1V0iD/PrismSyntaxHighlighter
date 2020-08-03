@@ -1,0 +1,43 @@
+{% include 'overall_header.html' %}
+
+<h1>{{ lang('ACP_PHBBSTUDIO_PRISM_TITLE') }}</h1>
+
+{% if S_ERROR %}
+	<div class="errorbox">
+		<h3>{{ lang('WARNING') }}</h3>
+		<p>{{ ERROR_MSG }}</p>
+	</div>
+{% endif %}
+
+<form id="phpbbstudio_prism_acp" name="phpbbstudio_prism_acp" method="post" action="{{ U_ACTION }}" data-ajax="true" data-refresh="true">
+
+	<fieldset>
+		<legend>{{ lang('SETTINGS') }}</legend>
+		<dl>
+			<dt>
+				<label for="phpbbstudio_prism_theme">{{ lang('ACP_PHPBBSTUDIO_PRISM_THEME_NAME') ~ lang('COLON') }}</label>
+				<strong>{{ THEME_CSS_NAME }}</strong>
+			</dt>
+
+			<dd>
+				<dd>
+					<select id="phpbbstudio_prism_theme" name="phpbbstudio_prism_theme" class="autowidth">
+						{% for theme in themes %}
+							<option>{{ theme.NAME }}</option>
+						{% endfor %}
+					</select>
+				</dd>
+			</dd>
+		</dl>
+	</fieldset>
+
+	{% include 'acp_phpbbstudio_prism_demo.html' %}
+
+	<fieldset class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}">
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+
+</form>
+
+{% include 'overall_footer.html' %}
