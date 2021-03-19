@@ -46,6 +46,7 @@ class main implements EventSubscriberInterface
 		return [
 			'core.text_formatter_s9e_configure_after'	=> 'onConfigure',
 			'core.page_header_after'					=> 'assignCss',
+			'core.adm_page_header_after'				=> 'assignCss',
 		];
 	}
 

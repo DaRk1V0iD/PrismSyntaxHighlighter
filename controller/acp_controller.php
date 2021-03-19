@@ -99,6 +99,7 @@ class acp_controller
 			/* Remove ".css" file estension */
 			$this->template->assign_block_vars('themes', [
 				'NAME'		=> preg_replace('/\\.[^.\\s]{3,4}$/', '', $theme),
+				'SELECTED'	=> $this->config['phpbbstudio_prism_theme'] == $theme,
 			]);
 		}
 
@@ -156,10 +157,7 @@ class acp_controller
 		$this->template->assign_vars([
 			'S_ERROR'			=> $s_errors,
 			'ERROR_MSG'			=> $s_errors ? implode('<br>', $errors) : '',
-
-			'THEME_CSS'			=> $this->config['phpbbstudio_prism_theme'],
 			'THEME_CSS_NAME'	=> preg_replace('/\\.[^.\\s]{3,4}$/', '', $this->config['phpbbstudio_prism_theme']),
-
 			'U_ACTION'			=> $this->u_action,
 		]);
 	}
