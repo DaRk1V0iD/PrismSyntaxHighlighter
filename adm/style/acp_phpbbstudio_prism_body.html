@@ -23,7 +23,7 @@
 				<dd>
 					<select id="phpbbstudio_prism_theme" name="phpbbstudio_prism_theme" class="autowidth">
 						{% for theme in themes %}
-							<option>{{ theme.NAME }}</option>
+							<option{% if theme.SELECTED %} selected="selected"{% endif %}>{{ theme.NAME }}</option>
 						{% endfor %}
 					</select>
 				</dd>
