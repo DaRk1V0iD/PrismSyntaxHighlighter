@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "Prism JS syntax highlighter",
 	"homepage": "https://www.phpbbstudio.com",
-	"version": "1.0.0-beta",
-	"time": "03-08-2020",
+	"version": "1.0.0-RC",
+	"time": "10-05-2021",
 	"license": "GPL-2.0-only",
 	"authors": [
 		{
